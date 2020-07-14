@@ -1,6 +1,7 @@
 package com.lumia.web.controller;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.lumia.web.annotation.SystemLog;
 import com.lumia.web.config.DynamicDataSource;
 import com.lumia.web.entity.User;
 import com.lumia.web.service.UserService;
@@ -30,7 +31,9 @@ public class UserController {
         return result;
     }
 
+
     @GetMapping("/findAll")
+    @SystemLog(type = "findALL", desc = "查询所有用户", module = "User")
     public Map<String , List<User>> findAll() {
         Map<String, List<User>> result = new HashMap<>();
         List<User> all = userService.findAll();

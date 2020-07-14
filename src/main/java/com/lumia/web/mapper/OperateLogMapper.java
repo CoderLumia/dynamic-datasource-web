@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OperateLogMapper {
 
-    @Insert("insert into tb_log(type, desc, module, operate_time) values(#{type}, #{desc}, #{module}, #{operateTime})")
+    @Insert("insert into tb_log(type, `desc`, module, operate_time, ip) values(#{type}, #{desc}, #{module}, #{operateTime}, #{ip})")
     int save(OperateLog operateLog);
 }

@@ -14,6 +14,16 @@ public class OperateLog {
 
     private Date operateTime;
 
+    private String ip;
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
     public Long getId() {
         return id;
     }

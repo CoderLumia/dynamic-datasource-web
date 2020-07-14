@@ -24,6 +24,7 @@ public class UserController {
 
 
     @RequestMapping("/save")
+    @SystemLog(type = "add", desc = "添加用户", module = "User")
     public Map<String, String> save(User user) {
         userService.save(user);
         Map<String, String> result = new HashMap<>();
@@ -49,17 +50,15 @@ public class UserController {
             DynamicDataSource.setDataSource("defaultDataSource");
         } else {
             boolean containsKey = DynamicDataSource.dataSourcesMap.containsKey(service);
-            if (containsKey) {
-                DynamicDataSource.setDataSource(service);
-            } else {
+            if (!containsKey) {
                 String format = String.format(url, service);
                 DruidDataSource druidDataSource = new DruidDataSource();
                 druidDataSource.setUrl(format);
                 druidDataSource.setUsername("root");
                 druidDataSource.setPassword("root");
                 DynamicDataSource.dataSourcesMap.put(service, druidDataSource);
-                DynamicDataSource.setDataSource(service);
             }
+            DynamicDataSource.setDataSource(service);
         }
 
         Map<String, List<User>> result = new HashMap<>();

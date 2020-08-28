@@ -51,6 +51,7 @@ public class SystemLogAspect {
             LOG.info("环绕通知， 目标方法执行开始");
             long start = System.currentTimeMillis();
             result = joinPoint.proceed();
+            System.out.println(result);
             long end = System.currentTimeMillis();
             LOG.info("环绕通知， 目标方法执行完成");
             LOG.info("耗时" + ((end - start) / 1000) + "s");

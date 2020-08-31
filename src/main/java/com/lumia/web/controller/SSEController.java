@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * SSE(Server Sent Event)
@@ -30,6 +32,6 @@ public class SSEController {
 
         }
         int value = (int) (Math.random() * 1000);
-        return "data: {value: " + value + "}\n\n";
+        return "event:notice\ndata: {value: " + value + "}\nretry:"+ 5000 + "\n\n";
     }
 }

@@ -12,3 +12,8 @@ spring:
 mybatis:
   type-aliases-package: com.lumia.web.entity
 debug: true
+
+# 清除启动时提示日志
+logging:
+  level:
+    org.spring.framework.boot.autoconfigure: error

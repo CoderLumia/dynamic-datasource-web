@@ -34,4 +34,6 @@ public class SSEController {
         int value = (int) (Math.random() * 1000);
         return "event:notice\ndata: {value: " + value + "}\nretry:"+ 5000 + "\n\n";
     }
+
+
 }

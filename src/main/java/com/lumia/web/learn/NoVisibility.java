@@ -15,7 +15,7 @@ public class NoVisibility {
             long i = 0;
             while (!flag) {
                 i++;
-                System.out.println("hello world");
+//                System.out.println("hello world");
             }
             System.out.println(i);
         }

@@ -3,6 +3,9 @@ package com.lumia.web.config;
 import com.lumia.web.utils.SpringUtils;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -34,6 +37,15 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     public static void clear() {
         DynamicDataSource.dataSourceKey.remove();
     }
+
+    @Override
+    public Connection getConnection() throws SQLException {
+        Object lookupKey = this.determineCurrentLookupKey();
+        DataSource dataSource = (DataSource) this.dataSourcesMap.get(lookupKey);
+        return dataSource.getConnection();
+    }
+
+
 
 
 }

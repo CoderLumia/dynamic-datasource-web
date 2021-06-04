@@ -2,6 +2,8 @@ package com.lumia.web.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.RandomUtil;
+import com.lumia.web.entity.ParseExcelDto;
+import com.lumia.web.service.ParseExcelService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
@@ -35,9 +38,20 @@ public class UserControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    @Autowired
+    private ParseExcelService parseExcelService;
+
     @Before
     public void init() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+
+    @Test
+    public void testParseExcel() {
+        File file = new File("C:\\Users\\EDZ\\Desktop\\event_fdgfjhfgdk.xlsx");
+
+        ParseExcelDto parseExcelDto = parseExcelService.parseExcel(file);
+        System.out.println(parseExcelDto);
     }
 
     //单线程测试
@@ -123,6 +137,5 @@ public class UserControllerTest {
 
         countDownLatch.await();
         log.info("执行完毕");
-
     }
 }

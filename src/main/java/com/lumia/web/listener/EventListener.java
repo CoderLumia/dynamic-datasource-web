@@ -19,8 +19,13 @@ public class EventListener extends AnalysisEventListener<EventProperty> {
     private EventUserDto eventUserDto;
 
     @Override
+    public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
+        int size = headMap.size();
+        super.invokeHeadMap(headMap, context);
+    }
+
+    @Override
     public void invoke(EventProperty eventProperty, AnalysisContext analysisContext) {
-        int size = analysisContext.readRowHolder().getCellMap().size();
         if (StringUtils.isNoneBlank(eventProperty.getEventName())) {
             //对象不为空则添加到集合中
             if (eventUserDto != null) {

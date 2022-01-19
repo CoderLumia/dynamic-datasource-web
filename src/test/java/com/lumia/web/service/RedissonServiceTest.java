@@ -16,16 +16,16 @@ import javax.annotation.Resource;
 public class RedissonServiceTest {
 
 
-    @Resource
-    private RedissonClient redissonClient;
-
-    @Test
-    public void testLock() {
-
-        RLock lock = redissonClient.getLock("lock");
-        lock.lock();
-
-        lock.unlock();
-
-    }
+//    @Resource
+//    private RedissonClient redissonClient;
+//
+//    @Test
+//    public void testLock() {
+//
+//        RLock lock = redissonClient.getLock("lock");
+//        lock.lock();
+//
+//        lock.unlock();
+//
+//    }
 }

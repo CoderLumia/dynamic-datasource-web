@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedissonConfig {
 
-    @Bean(destroyMethod = "shutdown")
-    public RedissonClient redissonClient() {
-        Config config = new Config();
-        config.useSingleServer().setAddress("redis://172.16.100.31:6379");
-        return Redisson.create(config);
-    }
+//    @Bean(destroyMethod = "shutdown")
+//    public RedissonClient redissonClient() {
+//        Config config = new Config();
+//        config.useSingleServer().setAddress("redis://172.16.100.31:6379");
+//        return Redisson.create(config);
+//    }
 }

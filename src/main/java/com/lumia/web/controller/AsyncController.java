@@ -1,5 +1,7 @@
 package com.lumia.web.controller;
 
+import jdk.nashorn.internal.codegen.CompilerConstants;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,11 +39,13 @@ public class AsyncController {
                 String say = helloService();
                 return say;
             };
+            /** 抛错 上面的代码不会执行 */
+//            int i = 1 / 0;
+            /** 同一条线程返回 */
             LOGGER.info(Thread.currentThread().getName() + "方法返回");
             return callable;
         } catch (Throwable throwable) {
-            LOGGER.error(throwable.getMessage(), throwable);
-            return null;
+            return () -> "查询失败";
         }
     }
 
